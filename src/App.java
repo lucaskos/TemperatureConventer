@@ -7,7 +7,7 @@ public static void main(String[] args) {
 	try {
 		SwingUtilities.invokeAndWait(new Runnable() {
 			public void run() {
-				new Calculator();
+				new Conventer();
 			}
 		});
 	} catch (InvocationTargetException e) {
