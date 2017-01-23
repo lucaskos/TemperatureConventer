@@ -17,6 +17,8 @@ public class Panel extends JPanel {
 	private OptionPanel optionPanel;
 	private String optionName;
 	private static double kelvinValue = 273.15;
+	private double fahrenheit;
+	private int kelvin, celsius;
 
 	Panel() {
 		setLayout(new BorderLayout());
@@ -71,34 +73,43 @@ public class Panel extends JPanel {
 	}
 
 	public void calculateCelcius(int i) {
-		float fahrenheit = (float) (Float.valueOf(i) * 1.8 + 32);
-		
-		fahrenheitLabel.setText(String.valueOf(fahrenheit) + FAHRENHEIT);
-		fahrenheitLabel.setForeground(Color.BLACK);
-		celsiusLabel.setText(String.valueOf(i + CELSIUS));
+		Context context = new Context(new CelsiusConventer());
+
+		setLabelValues(context.executeStrategy(i));
+
 		celsiusLabel.setForeground(Color.RED);
-		kelvinLabel.setForeground(Color.BLACK);
-		kelvinLabel.setText(String.valueOf(i + kelvinValue) + KELVIN);
 	}
 
 	public void calculateFahrenheit(int i) {
-		double celsius = (i - 32) * 5 / 9;
-		celsiusLabel.setForeground(Color.BLACK);
-		celsiusLabel.setText(String.valueOf(celsius + CELSIUS));
+
+		Context context = new Context(new FahrenheitConventer());
+
+		setLabelValues(context.executeStrategy(i));
+
 		fahrenheitLabel.setForeground(Color.RED);
-		fahrenheitLabel.setText(String.valueOf(i) + FAHRENHEIT);
-		kelvinLabel.setForeground(Color.BLACK);
-		kelvinLabel.setText(String.valueOf(celsius + kelvinValue) + KELVIN);
 	}
-	
+
 	public void calculateKelvin(int i) {
-		double fahrenheit = i * 9 /5 - 459.67;
-		float celsius = (float) (i - kelvinValue);
-		celsiusLabel.setForeground(Color.BLACK);
-		celsiusLabel.setText(String.valueOf(celsius) + CELSIUS);
-		fahrenheitLabel.setForeground(Color.BLACK);
-		fahrenheitLabel.setText(String.valueOf(fahrenheit) + FAHRENHEIT);
+		Context context = new Context(new KelvinConventer());
+		setLabelValues(context.executeStrategy(i));
 		kelvinLabel.setForeground(Color.RED);
-		kelvinLabel.setText(String.valueOf(i) + KELVIN);
+	}
+
+	private void setLabelValues(MyResults r) {
+		fahrenheit = r.getFahrenheit();
+		kelvin = r.getKelvin();
+		celsius = r.getCelsius();
+
+		celsiusLabel.setText(String.valueOf(celsius) + CELSIUS);
+		fahrenheitLabel.setText(String.valueOf(fahrenheit) + FAHRENHEIT);
+		kelvinLabel.setText(String.valueOf(kelvin) + KELVIN);
+		setDefaultLabelColors();
+
+	}
+
+	private void setDefaultLabelColors() {
+		celsiusLabel.setForeground(Color.BLACK);
+		fahrenheitLabel.setForeground(Color.BLACK);
+		kelvinLabel.setForeground(Color.BLACK);
 	}
 }

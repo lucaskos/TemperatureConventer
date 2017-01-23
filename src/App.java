@@ -1,3 +1,5 @@
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.SwingUtilities;
@@ -7,7 +9,14 @@ public static void main(String[] args) {
 	try {
 		SwingUtilities.invokeAndWait(new Runnable() {
 			public void run() {
-				new Conventer();
+				Conventer c = new Conventer();
+				c.addWindowListener(new WindowAdapter(){
+					public void windowClosing(WindowEvent e) {
+						c.dispose();
+						System.gc();
+					}
+				});
+				
 			}
 		});
 	} catch (InvocationTargetException e) {
