@@ -11,10 +11,8 @@ public static void main(String[] args) {
 			}
 		});
 	} catch (InvocationTargetException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 }
