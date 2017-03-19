@@ -7,6 +7,8 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import strategies.Context;
+
 public class Panel extends JPanel {
 	private JSlider slider;
 	private JLabel celsiusLabel, fahrenheitLabel, kelvinLabel;
@@ -17,6 +19,7 @@ public class Panel extends JPanel {
 	private OptionPanel optionPanel;
 	private String optionName;
 	private static double kelvinValue = 273.15;
+	private Context context;
 
 	Panel() {
 		setLayout(new BorderLayout());
@@ -69,6 +72,11 @@ public class Panel extends JPanel {
 		add(optionPanel, BorderLayout.EAST);
 
 	}
+	
+	//REVIEW 
+	/*
+	 * implement strategy pattern desing
+	 */
 
 	public void calculateCelcius(int i) {
 		float fahrenheit = (float) (Float.valueOf(i) * 1.8 + 32);
