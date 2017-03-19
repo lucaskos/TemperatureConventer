@@ -1,11 +1,11 @@
 package strategies;
 
 public class FahrenheitConventer implements TemperatureStrategy {
-
-	@Override
-	public int convert(int temperature) {
-		// TODO Auto-generated method stub
-		return 0;
+	public MyResults convert(double number) {
+		int celsius = (int) ((number - 32) * 5 / 9);
+		int kelvin = (int) (celsius + 273.15);
+		return new MyResults(celsius, kelvin, number);
+		
 	}
 
 }

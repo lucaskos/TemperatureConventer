@@ -7,7 +7,7 @@ public class Context {
 		this.strategy = strategy;
 	}
 	
-	public int executeStrategy(int temperature) {
+	public MyResults executeStrategy(int temperature) {
 		return strategy.convert(temperature);
 	}
 }
